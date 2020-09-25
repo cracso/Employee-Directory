@@ -13,7 +13,6 @@ class Search extends Component {
     error: ""
   };
 
-  // When the component mounts, get a list of all available base breeds and update this.state.breeds
   componentDidMount() {
     API.getEmployees()
       .then(res => this.setState({ employee: res.data }))
@@ -91,14 +90,14 @@ class Search extends Component {
   handleInputChange = event => {
     const filter = event.target.value;
     console.log(event.target.value)
-   
 
-    const filteredList = this .state.employee.filter(employee => {
+
+    const filteredList = this.state.employee.filter(employee => {
       let values = Object.values(employee).join("").toLowerCase();
       console.log(values);
       return values.indexOf(filter.toLowerCase()) !== -1;
     });
-      this.setState({employee: filteredList })
+    this.setState({ employee: filteredList })
   };
 
   handleFormSubmit = event => {
