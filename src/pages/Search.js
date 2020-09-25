@@ -102,7 +102,7 @@ class Search extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.getDogsOfBreed(this.state.search)
+    API.getEmployees(this.state.employee)
       .then(res => {
         if (res.data.status === "error") {
           throw new Error(res.data.message);
