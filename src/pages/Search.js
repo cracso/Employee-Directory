@@ -20,8 +20,85 @@ class Search extends Component {
       .catch(err => console.log(err));
   }
 
+  sortAddress = () => {
+    function compare(a, b) {
+      const userA = a.address.toUpperCase();
+      const userB = b.address.toUpperCase();
+
+      let comparison = 0;
+      if (userA > userB) {
+        comparison = 1;
+      } else if (userA < userB) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+
+    this.setState({ employee: this.state.employee.sort(compare) });
+  }
+
+  sortName = () => {
+    function compare(a, b) {
+      const userA = a.first.toUpperCase();
+      const userB = b.first.toUpperCase();
+
+      let comparison = 0;
+      if (userA > userB) {
+        comparison = 1;
+      } else if (userA < userB) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+
+    this.setState({ employee: this.state.employee.sort(compare) });
+  };
+
+  sortLast = () => {
+    function compare(a, b) {
+      const userA = a.last.toUpperCase();
+      const userB = b.last.toUpperCase();
+
+      let comparison = 0;
+      if (userA > userB) {
+        comparison = 1;
+      } else if (userA < userB) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+
+    this.setState({ employee: this.state.employee.sort(compare) });
+  };
+
+  sortEmail = () => {
+    function compare(a, b) {
+      const userA = a.email.toUpperCase();
+      const userB = b.email.toUpperCase();
+
+      let comparison = 0;
+      if (userA > userB) {
+        comparison = 1;
+      } else if (userA < userB) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+
+    this.setState({ employee: this.state.employee.sort(compare) });
+  };
+
   handleInputChange = event => {
-    this.setState({ search: event.target.value });
+    const filter = event.target.value;
+    console.log(event.target.value)
+   
+
+    const filteredList = this .state.employee.filter(employee => {
+      let values = Object.values(employee).join("").toLowerCase();
+      console.log(values);
+      return values.indexOf(filter.toLowerCase()) !== -1;
+    });
+      this.setState({employee: filteredList })
   };
 
   handleFormSubmit = event => {
@@ -51,7 +128,12 @@ class Search extends Component {
             handleInputChange={this.handleInputChange}
             breeds={this.state.employee}
           />
-          <SearchResults results={this.state.employee} />
+          <SearchResults
+            sortAddress={this.sortAddress}
+            sortName={this.sortName}
+            sortLast={this.sortLast}
+            sortEmail={this.sortEmail}
+            results={this.state.employee} />
         </Container>
       </div>
     );

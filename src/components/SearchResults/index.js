@@ -4,18 +4,18 @@ import "./style.css";
 function SearchResults(props) {
   return (
 
-    <table class="table">
+    <table className="table">
   <thead>
     <tr>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Email</th>
-      <th scope="col">Address</th>
+      <th scope="col" onClick={() => props.sortName()}>First</th>
+      <th scope="col" onClick={() => props.sortLast()}>Last</th>
+      <th scope="col" onClick={() => props.sortEmail()}>Email</th>
+      <th scope="col" onClick={() => props.sortAddress()}>Address</th>
     </tr>
   </thead>
   <tbody>
   {props.results.map(result => (
-    <tr key={result} >
+    <tr key={result.email} >
     <th scope="row">{result.first} </th>
     <td>{result.last}</td>
     <td>{result.email}</td>
